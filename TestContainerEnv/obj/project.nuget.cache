@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "JGTMbTlp08FQam22hIavGTTLHCMig0awSuYNG78spimg9yVtUqNye/6Jf8YeEWr3yk1wujP0flncUXnYg/LxQA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\takeu\\Desktop\\AspContainerDev\\TestContainerEnv\\TestContainerEnv\\TestContainerEnv.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\takeu\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.14.0\\microsoft.visualstudio.azure.containers.tools.targets.1.14.0.nupkg.sha512"
+  ],
+  "logs": []
+}

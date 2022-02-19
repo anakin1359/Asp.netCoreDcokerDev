@@ -80,3 +80,47 @@ e250d1d99097   aspcore-5-for-docker   "dotnet TestContaine…"   6 minutes ago  
 ```
 docker rm e250d1d99097 && slepp 1s && docker image ls |fgrep e250d1d99097
 ```
+
+---
+### GCR(Google Container Registory) を使用する場合
+1. GCPのDocker認証ヘルパーを使用
+```
+gcloud auth configure-docker
+```
+
+2. ローカルPCのプロファイルに以下情報が書き込まれていることを確認
+```
+$ cat /Users/masatotakeuchi/.docker/config.json
+{
+  "credsStore": "desktop",
+  "credHelpers": {
+    "gcr.io": "gcloud",
+    "us.gcr.io": "gcloud",
+    "eu.gcr.io": "gcloud",
+    "asia.gcr.io": "gcloud",
+    "staging-k8s.gcr.io": "gcloud",
+    "marketplace.gcr.io": "gcloud"
+  }
+}
+```
+
+3. コンテナイメージを保存するプロジェクトIDを確認
+```
+gcloud projects list
+```
+
+4. コンテナイメージを生成（プロジェクトIDを保存先のIDに置き換えて実行）
+```
+docker build -t asia.gcr.io/${PROJECT_ID}/aspcore-5-for-docker:latest -f TestContainerEnv/Dockerfile .
+```
+
+5. コンテナイメージが生成されていることを確認
+```
+$ docker images |fgrep ${PROJECT_ID}                  
+asia.gcr.io/${PROJECT_ID}/aspcore-5-for-docker   latest                                                  35ff4d2f456b   40 minutes ago      210MB
+```
+
+6. 生成したコンテナイメージをGCRにPush
+```
+docker push asia.gcr.io/${PROJECT_ID}/aspcore-5-for-docker:latest
+```
